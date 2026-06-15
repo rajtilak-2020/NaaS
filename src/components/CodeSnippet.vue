@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue';
 import { Play, Copy, Check, Search } from '@lucide/vue';
 import { SNIPPETS } from '../data/snippets';
-import type { Category } from '../data/reasons';
+import type { Category } from '../data/categories';
 
 const props = defineProps<{
   category: Category | null;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Copy as CopyIcon, Check as CheckIcon } from '@lucide/vue';
-import type { NoReason } from '../data/reasons';
+import type { NoReason } from '../data/categories';
 
 const props = defineProps<{
   reason: NoReason | null;

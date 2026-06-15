@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { CATEGORIES } from '../data/reasons';
-import type { Category } from '../data/reasons';
+import { CATEGORIES } from '../data/categories';
+import type { Category } from '../data/categories';
 
 defineProps<{
   modelValue: Category | null;

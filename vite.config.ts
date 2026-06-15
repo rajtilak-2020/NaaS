@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { handleApiRequest } from './src/api/handler'
-import { build } from 'esbuild'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -39,25 +38,6 @@ export default defineConfig({
             next()
           }
         })
-      }
-    },
-    {
-      name: 'bundle-sw',
-      async buildStart() {
-        try {
-          // Bundle the service worker using the installed esbuild binary
-          await build({
-            entryPoints: ['src/sw-src.ts'],
-            bundle: true,
-            outfile: 'public/sw.js',
-            minify: true,
-            sourcemap: false,
-            platform: 'browser',
-          });
-          console.log('✓ Service Worker bundled successfully into public/sw.js');
-        } catch (e) {
-          console.error('Failed to bundle Service Worker:', e);
-        }
       }
     }
   ]

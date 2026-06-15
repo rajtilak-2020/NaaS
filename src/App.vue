@@ -8,15 +8,17 @@ const state = useNoApi();
 provide('naasState', state);
 
 onMounted(() => {
-  // Register Service Worker for intercepting /api calls client-side
+  // Unregister existing Service Workers to prevent API interception/exposure
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => {
-        console.log('✓ NaaS Service Worker registered scope:', reg.scope);
-      })
-      .catch(err => {
-        console.error('✗ Service Worker registration failed:', err);
-      });
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (const registration of registrations) {
+        registration.unregister().then((unregistered) => {
+          if (unregistered) {
+            console.log('✓ Service worker unregistered successfully');
+          }
+        });
+      }
+    });
   }
 
   // Load first excuse automatically

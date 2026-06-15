@@ -1,5 +1,6 @@
-import { reasons, CATEGORIES } from '../data/reasons';
-import type { Category } from '../data/reasons';
+import { reasons } from '../data/reasons';
+import { CATEGORIES } from '../data/categories';
+import type { Category } from '../data/categories';
 
 export interface ApiResponse {
   id?: number;

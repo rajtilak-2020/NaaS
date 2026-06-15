@@ -1,5 +1,6 @@
 import { ref, watch } from 'vue';
-import type { Category, NoReason } from '../data/reasons';
+import type { Category, NoReason } from '../data/categories';
+
 
 export function useNoApi() {
   const selectedCategory = ref<Category | null>(null);
