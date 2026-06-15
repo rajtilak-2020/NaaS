@@ -19,9 +19,16 @@ const selectLanguage = (event: Event) => {
   <div class="left-panel">
     <!-- Branding Header -->
     <header class="header-section">
-      <h1 class="app-title font-mono">
-        <span :class="['brand-no', { 'pulse-glow': state.pulseActive.value }]">NO</span>_AS_A_SERVICE
-      </h1>
+      <div class="brand-wrapper">
+        <img 
+          src="/favicon.png" 
+          alt="NaaS Logo" 
+          :class="['brand-logo', { 'logo-pulse': state.pulseActive.value }]" 
+        />
+        <h1 class="app-title font-mono">
+          <span :class="['brand-no', { 'pulse-glow': state.pulseActive.value }]">NO</span>_AS_A_SERVICE
+        </h1>
+      </div>
       <p class="app-tagline font-mono">
         &gt; Absenteeism, denial, and boundaries as a production-ready REST utility.
       </p>
@@ -81,7 +88,39 @@ const selectLanguage = (event: Event) => {
 .header-section {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.brand-logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  transition: all var(--transition-fast);
+}
+
+@keyframes logo-pulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(255, 51, 51, 0));
+  }
+  50% {
+    transform: scale(1.15) rotate(-5deg);
+    filter: drop-shadow(0 0 12px var(--accent-color));
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(255, 51, 51, 0));
+  }
+}
+
+.logo-pulse {
+  animation: logo-pulse 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .app-title {
