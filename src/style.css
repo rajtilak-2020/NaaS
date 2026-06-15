@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Design Tokens */
+  --bg-color: #0A0A0A;
+  --panel-bg: #111111;
+  --border-color: #1E1E1E;
+  --accent-color: #FF3333;
+  --accent-hover: #E62E2E;
+  --accent-secondary: #FF6B6B;
+  --text-primary: #F5F5F5;
+  --text-muted: #666666;
+  --code-bg: #0D0D0D;
+  --success-color: #00FF88;
+  --success-glow: rgba(0, 255, 136, 0.2);
+  --error-color: #FF3333;
+  --warning-color: #FFB300;
+  
+  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}
+
+/* Reset & Global Base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Monospace text override */
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+/* Pulse animation for 'NO' logo */
+@keyframes pulse-red {
+  0% {
+    text-shadow: 0 0 0 rgba(255, 51, 51, 0);
+    color: var(--text-primary);
+  }
+  20% {
+    text-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+    color: var(--accent-color);
+  }
+  60% {
+    text-shadow: 0 0 15px var(--accent-color), 0 0 30px var(--accent-color);
+    color: var(--accent-color);
+  }
+  100% {
+    text-shadow: 0 0 0 rgba(255, 51, 51, 0);
+    color: var(--text-primary);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-red 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Button & interactive base */
+button, select, input {
+  font-family: inherit;
+  font-size: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+/* Custom layout utility classes */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Grid & Layout */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Brutalist details */
+.sharp-border {
+  border: 1px solid var(--border-color);
+}
+
+/* Code theme highlights */
+.token.string { color: #A8FF60; }
+.token.number { color: #FF73FD; }
+.token.boolean { color: #FF73FD; }
+.token.key { color: #96CBFE; }
+.token.keyword { color: #FF73FD; }
+.token.function { color: #FFD2A6; }
+.token.comment { color: var(--text-muted); }
+.token.operator { color: #EDEDED; }
+.token.class { color: #C6C5FE; }
