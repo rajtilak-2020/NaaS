@@ -1,5 +1,6 @@
 import { ref, watch } from 'vue';
 import type { Category, NoReason } from '../data/categories';
+import { handleApiRequest } from '../api/handler';
 
 
 export function useNoApi() {
@@ -26,19 +27,16 @@ export function useNoApi() {
     triggerPulse();
 
     try {
-      let url = '/api/no';
-      const params = new URLSearchParams();
+      const queryParams: Record<string, string> = {};
       if (selectedCategory.value) {
-        params.append('category', selectedCategory.value);
-      }
-      
-      const queryString = params.toString();
-      if (queryString) {
-        url += `?${queryString}`;
+        queryParams.category = selectedCategory.value;
       }
 
-      const res = await fetch(url);
-      const data = await res.json();
+      // Simulate network request delay (80ms - 150ms) to ensure smooth transition/pulse UI feedback
+      await new Promise(resolve => setTimeout(resolve, 80 + Math.random() * 70));
+
+      const { body } = handleApiRequest('/api/no', queryParams);
+      const data = body;
 
       const endTime = performance.now();
       responseTime.value = Math.round(endTime - startTime);
@@ -60,8 +58,11 @@ export function useNoApi() {
     triggerPulse();
 
     try {
-      const res = await fetch(`/api/no?id=${id}`);
-      const data = await res.json();
+      // Simulate network request delay (80ms - 150ms)
+      await new Promise(resolve => setTimeout(resolve, 80 + Math.random() * 70));
+
+      const { body } = handleApiRequest('/api/no', { id: id.toString() });
+      const data = body;
 
       const endTime = performance.now();
       responseTime.value = Math.round(endTime - startTime);
